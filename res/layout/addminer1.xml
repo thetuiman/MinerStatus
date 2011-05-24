@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/addMinerScrollView" 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" android:orientation="vertical"
+	    android:id="@+id/addMinerLayout">
+	
+		<RadioGroup
+	      android:layout_width="fill_parent"
+	      android:layout_height="wrap_content"
+	      android:orientation="vertical">
+	      <RadioButton android:id="@+id/radio_bitcoinpool"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Bitcoin Pool" />
+	      <RadioButton android:id="@+id/radio_slush"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Slush's Pool" />
+	      <RadioButton android:id="@+id/radio_deepbit"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Deepbit.net" />    
+	      <RadioButton android:id="@+id/radio_btcmine"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="BtcMine" />    
+	      <RadioButton android:id="@+id/radio_btcguild"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Btcguild" />    	          
+	    </RadioGroup>
+		<TextView  
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:id="@+id/minerNameLabel" 
+	        android:visibility="invisible" />    
+	    <EditText
+	        android:id="@+id/minerName"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:visibility="invisible"  />
+		 <Button
+		 	 android:id="@+id/addMinerButton"
+		     android:layout_height="wrap_content"
+		     android:layout_width="wrap_content"
+		     android:text="@string/add_miner"
+		     android:onClick="addMiner"
+		     android:visibility="invisible"  />
+		<TextView  
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:id="@+id/minerDirections" 
+	        android:visibility="invisible" />                 
+	</LinearLayout>
+</ScrollView>

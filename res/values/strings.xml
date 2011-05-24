@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Miner Status</string>
+    <string name="add_miner">Add Miner</string>
+    <string name="fetch_status">Fetch Status</string>
+    <string name="about">About</string>
+    <string name="donationText">\nLike this app?  Want to see more features &amp; polish?</string>
+    <string name="donationAddress">1Eyr5mN54UyprUHAw1zXLvkvtDNeG9erD7 </string>
+    <string name="delete_miner">Delete Miner</string>
+    <string name="view_miner">View Miner</string>
+    <string name="options">Options</string>
+    <string name="mtGoxButtonLabel">Toggle Mt. Gox Visibility: </string>
+    <string name="selectTheme">Select Theme:</string>
+</resources>

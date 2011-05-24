@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/optionsScrollView" 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" android:orientation="vertical"
+	    android:id="@+id/optionsLayout">
+	<TextView  
+			android:id="@+id/mtGoxButtonLabel"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content" 
+	        android:text="@+string/mtGoxButtonLabel"  
+	        android:layout_marginLeft="20px"
+	        android:layout_marginTop="15px"
+	        />  		
+	<ToggleButton android:id="@+id/mtGoxToggle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textOn="Visible"
+	        android:textOff="Hidden"
+	        android:layout_marginTop="15px"
+	        android:layout_marginLeft="20px"
+	        />
+	<TextView  android:id="@+id/themeSpinnerLabel"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content" 
+	        android:text="@+string/selectTheme"  
+	        android:layout_marginLeft="20px"
+	        android:layout_marginTop="30px"
+	        />  		
+		<RadioGroup
+	      android:layout_width="fill_parent"
+	      android:layout_height="wrap_content"
+	      android:orientation="vertical">
+	      <RadioButton android:id="@+id/radio_dark"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Dark Theme" />
+	      <RadioButton android:id="@+id/radio_light"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Light Theme" />
+	    </RadioGroup>           
+	</LinearLayout>
+</ScrollView>

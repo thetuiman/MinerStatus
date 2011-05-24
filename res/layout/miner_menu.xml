@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add_miner"
+          android:icon="@drawable/add_miner"
+          android:title="@string/add_miner" />
+    <item android:id="@+id/fetch_status"
+          android:icon="@drawable/fetch_status"
+          android:title="@string/fetch_status" />
+    <item android:id="@+id/options"
+          android:icon="@drawable/options"
+          android:title="@string/options" />          
+    <item android:id="@+id/about"
+          android:icon="@drawable/about"
+          android:title="@string/about" />          
+</menu>
