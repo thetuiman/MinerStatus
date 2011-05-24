@@ -21,7 +21,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     	db.execSQL("CREATE TABLE config (key TEXT PRIMARY KEY, value TEXT)");
     	db.execSQL("INSERT INTO config (key, value) VALUES ('theme', 'dark')");
     	db.execSQL("INSERT INTO config (key, value) VALUES ('show.mtgox', 'true')");
-    	db.execSQL("CREATE TABLE miner_data (miner TEXT PRIMARY KEY, date_long INTEGER, json TEXT)");
+    	db.execSQL("CREATE TABLE miner_data (miner TEXT, date_long INTEGER, json TEXT)");
     }
 
 	@Override
@@ -51,7 +51,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 			oldVersion = 4;
 		}
 		if (oldVersion == 4){
-			db.execSQL("CREATE TABLE miner_data (miner TEXT PRIMARY KEY, date_long INTEGER, json TEXT)");
+			db.execSQL("CREATE TABLE miner_data (miner TEXT, date_long INTEGER, json TEXT)");
 			oldVersion = 5;
 		}
 	}

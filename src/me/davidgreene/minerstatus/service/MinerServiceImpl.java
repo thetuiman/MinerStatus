@@ -8,9 +8,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class MinerServiceImpl implements MinerService {
 	
+	private final String tag = "TX";
 	private MinerStatusApp app;
 	
     public MinerServiceImpl(Context context){
@@ -54,34 +56,41 @@ public class MinerServiceImpl implements MinerService {
 		ContentValues values = new ContentValues();
 		values.put("miner", miner);
 		values.put("pool", pool);
-		values.put("errors", 14); //This will be reset to 0 if it is successful		
+		values.put("errors", 4); //This will be reset to 0 if it is successful		
 		getDBw().insert("miners", null, values);
 	}
 
 	
-	public final String GET_LATEST_MINER_DATA = "SELECT json, date_long FROM miner_data WHERE date_long=(SELECT MAX(date_long) FROM miner_data WHERE miner=?) AND miner=?";
-	
-	@Override
 	public void addJsonData(String miner, String jsonData) {
 		ContentValues values = new ContentValues();
 		values.put("miner", miner);
-		values.put("json_data", jsonData);
+		values.put("json", jsonData);
 		values.put("date_long", System.currentTimeMillis());		
 		getDBw().insert("miner_data", null, values);
 	}
 
-	@Override
+	//public final String GET_LATEST_MINER_DATA = "SELECT json, date_long FROM miner_data WHERE date_long=(SELECT MAX(date_long) FROM miner_data WHERE miner=?) AND miner=?";
+	//Select(max) columns need to be indexed, using an alternate method
+	public final String GET_LATEST_MINER_DATA = "SELECT json, date_long FROM miner_data WHERE miner=? ORDER BY date_long DESC";
+	public final String CLEAR_DAY_OLD_DATA = "DELETE FROM miner_data WHERE miner=? and date_long < ?";
 	public Result readJsonData(String miner) {
 		Cursor cursor=null;
 		try{
-			cursor = getDBw().rawQuery(GET_LATEST_MINER_DATA, new String[]{miner, miner});
+			Long oneDayAgo = System.currentTimeMillis() - 86400000L;
+			cursor = getDBw().rawQuery(CLEAR_DAY_OLD_DATA, new String[]{miner, oneDayAgo.toString()});
+			
+			cursor = getDBw().rawQuery(GET_LATEST_MINER_DATA, new String[]{miner});
+			
+			//Only select the first row since we're going for the max(date_long)
 			if (cursor.moveToNext()){
 				Result result = new Result();
 				result.setData(cursor.getString(0));
 				result.setDate(new Date(cursor.getLong(1)));
 				return result;
 			}
-		} finally{ 
+		} catch (Exception e){
+			Log.d(tag, e.getMessage()); 
+		} finally{
 			if (cursor != null && !cursor.isClosed()){
 				cursor.close();
 			}
@@ -91,7 +100,6 @@ public class MinerServiceImpl implements MinerService {
 	
 	private final String SELECT_POOLS = "SELECT distinct pool FROM miners order by pool asc";
 	
-	@Override
 	public Cursor getPools() {
 		return getDBw().rawQuery(SELECT_POOLS, null);
 	}
@@ -99,7 +107,6 @@ public class MinerServiceImpl implements MinerService {
 
 	private final String SELECT_MINERS = "SELECT miner, errors FROM miners WHERE pool=?";
 	
-	@Override
 	public Cursor getMiners(String pool) {
 		return getDBw().rawQuery(SELECT_MINERS, new String[]{pool});
 	}

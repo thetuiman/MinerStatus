@@ -1,6 +1,6 @@
 package me.davidgreene.minerstatus;
 
-import static me.davidgreene.minerstatus.util.MinerStatusConstants.*;
+import static me.davidgreene.minerstatus.util.MinerStatusConstants.POOL_DIRECTIONS;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,7 +73,7 @@ public class AddMinerActivity extends AbstractMinerStatusActivity {
 	        	poolToAdd = "btcmine";
 	        	minerNameLabel.setText("API Key");
 	        } else if (rb.getText().equals("Btcguild")){
-	        	poolToAdd = "btcgulid";
+	        	poolToAdd = "btcguild";
 	        	minerNameLabel.setText("API Key");
 	        }
 	        minerNameLabel.setVisibility(TextView.VISIBLE);
@@ -88,7 +88,7 @@ public class AddMinerActivity extends AbstractMinerStatusActivity {
 		final EditText minerName = (EditText) findViewById(R.id.minerName);	
 		if (insertMiner(minerName.getText().toString(), poolToAdd)){
 			Toast.makeText(getApplicationContext(), minerName.getText().toString()+"/"+poolToAdd+" added",
-				Toast.LENGTH_LONG).show();
+				Toast.LENGTH_LONG).show();			
 			AddMinerActivity.this.finish();
 		} else {
 			Toast.makeText(getApplicationContext(), minerName.getText().toString()+"/"+poolToAdd+" is invalid",
@@ -117,7 +117,7 @@ public class AddMinerActivity extends AbstractMinerStatusActivity {
 				}
 			}
 			return Boolean.TRUE;
-		} else if(pool.equals("btcmine") || pool.equals("btguild") || pool.equals("bitcoinpool")){
+		} else if(pool.equals("btcmine") || pool.equals("btcguild") || pool.equals("bitcoinpool")){
 			for(Character c : miner.toCharArray()){
 				if (!Character.isLetterOrDigit(c)){
 					return Boolean.FALSE;
